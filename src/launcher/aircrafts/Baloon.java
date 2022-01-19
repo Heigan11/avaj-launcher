@@ -29,7 +29,7 @@ public class Baloon extends Aircraft implements Flyable{
                 changeCoordinates(2,0,4);
                 break;
             case "SNOW":
-                System.out.println("Baloon#" + this.name + "(" + this.id +"): Let's enjoy the good weather and take some pics.");
+                System.out.println("Baloon#" + this.name + "(" + this.id +"): It's snowing. We're gonna crash.");
                 changeCoordinates(0,0,-15);
                 break;
         }
@@ -59,6 +59,10 @@ public class Baloon extends Aircraft implements Flyable{
             System.out.println("Tower says: Baloon#" + this.name + "(" + this.id + ") unregistered from weather tower.");
             height = 0;
         }
+
+        if (height > 100)
+            height = 100;
+
         this.coordinates = new Coordinates(longitude, latitude, height);
     }
 }
