@@ -1,6 +1,7 @@
 package launcher.aircrafts;
 
 import launcher.Coordinates;
+import launcher.WeatherTower;
 
 public class Helicopter extends Aircraft implements Flyable{
 
