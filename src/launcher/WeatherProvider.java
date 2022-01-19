@@ -15,7 +15,6 @@ public final class WeatherProvider {
     }
 
     public String getCurrentWeather(Coordinates coordinates){
-        int randomNum = ThreadLocalRandom.current().nextInt(0, 3 + 1);
-        return weather[randomNum];
+        return weather[(coordinates.getLongitude() + coordinates.getLatitude() + coordinates.getHeight()) % 4];
     }
 }
