@@ -19,6 +19,8 @@ public class Simulator {
         int numberOfSimulations = 0;
 
         try {
+            FileWriter myWriter = new FileWriter("simulation.txt");
+            myWriter.close();
             File file = new File("scenario.txt");
             FileReader fr = new FileReader(file);
             BufferedReader reader = new BufferedReader(fr);
@@ -53,6 +55,7 @@ public class Simulator {
                 line = reader.readLine();
                 list.add(line);
             }
+            reader.close();
         } catch (WrongAircraftData | WrongNumberOfSimulations | IOException e) {
             e.printStackTrace(System.out);
         }

@@ -2,6 +2,7 @@ package launcher.aircrafts;
 
 import launcher.Coordinates;
 import launcher.WeatherTower;
+import launcher.WriteToFile;
 
 public class Baloon extends Aircraft implements Flyable{
 
@@ -17,19 +18,19 @@ public class Baloon extends Aircraft implements Flyable{
 
         switch (weather) {
             case "RAIN":
-                System.out.println("Baloon#" + this.name + "(" + this.id +"): Damn you rain! You messed up my baloon.");
+                WriteToFile.writeToFile("Baloon#" + this.name + "(" + this.id +"): Damn you rain! You messed up my baloon.");
                 changeCoordinates(0,0,-5);
                 break;
             case "FOG":
-                System.out.println("Baloon#" + this.name + "(" + this.id +"): It's fog! Lower altitude!");
+                WriteToFile.writeToFile("Baloon#" + this.name + "(" + this.id +"): It's fog! Lower altitude!");
                 changeCoordinates(0,0,-3);
                 break;
             case "SUN":
-                System.out.println("Baloon#" + this.name + "(" + this.id +"): Let's enjoy the good weather and take some pics.");
+                WriteToFile.writeToFile("Baloon#" + this.name + "(" + this.id +"): Let's enjoy the good weather and take some pics.");
                 changeCoordinates(2,0,4);
                 break;
             case "SNOW":
-                System.out.println("Baloon#" + this.name + "(" + this.id +"): It's snowing. We're gonna crash.");
+                WriteToFile.writeToFile("Baloon#" + this.name + "(" + this.id +"): It's snowing. We're gonna crash.");
                 changeCoordinates(0,0,-15);
                 break;
         }
@@ -39,7 +40,7 @@ public class Baloon extends Aircraft implements Flyable{
     public void registerTower(WeatherTower weatherTower) {
         this.weatherTower = weatherTower;
         weatherTower.register(this);
-        System.out.println("Tower says: Baloon#" + this.name + "(" + this.id + ") registered to weather tower.");
+        WriteToFile.writeToFile("Tower says: Baloon#" + this.name + "(" + this.id + ") registered to weather tower.");
     }
 
     @Override
@@ -55,8 +56,8 @@ public class Baloon extends Aircraft implements Flyable{
 
         if (height <= 0) {
             this.weatherTower.unregister(this);
-            System.out.println("Baloon#" + this.name + "(" + this.id + ") landing. Longitude = " + longitude + ", Latitude = " + latitude + ".");
-            System.out.println("Tower says: Baloon#" + this.name + "(" + this.id + ") unregistered from weather tower.");
+            WriteToFile.writeToFile("Baloon#" + this.name + "(" + this.id + ") landing. Longitude = " + longitude + ", Latitude = " + latitude + ".");
+            WriteToFile.writeToFile("Tower says: Baloon#" + this.name + "(" + this.id + ") unregistered from weather tower.");
             height = 0;
         }
 
