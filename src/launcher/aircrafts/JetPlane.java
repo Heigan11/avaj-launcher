@@ -2,6 +2,7 @@ package launcher.aircrafts;
 
 import launcher.Coordinates;
 import launcher.WeatherTower;
+import launcher.WriteToFile;
 
 public class JetPlane extends Aircraft implements Flyable{
 
@@ -17,19 +18,19 @@ public class JetPlane extends Aircraft implements Flyable{
 
         switch (weather) {
             case "RAIN":
-                System.out.println("JetPlane#" + this.name + "(" + this.id +"): It's raining. Better watch out for lightings.");
+                WriteToFile.writeToFile("JetPlane#" + this.name + "(" + this.id +"): It's raining. Better watch out for lightings.");
                 changeCoordinates(5,0,0);
                 break;
             case "FOG":
-                System.out.println("JetPlane#" + this.name + "(" + this.id +"): I can't see anything.");
+                WriteToFile.writeToFile("JetPlane#" + this.name + "(" + this.id +"): I can't see anything.");
                 changeCoordinates(1,0,0);
                 break;
             case "SUN":
-                System.out.println("JetPlane#" + this.name + "(" + this.id +"): Where is my sun glasses?");
+                WriteToFile.writeToFile("JetPlane#" + this.name + "(" + this.id +"): Where is my sun glasses?");
                 changeCoordinates(10,0,2);
                 break;
             case "SNOW":
-                System.out.println("JetPlane#" + this.name + "(" + this.id +"): OMG! Winter is coming!");
+                WriteToFile.writeToFile("JetPlane#" + this.name + "(" + this.id +"): OMG! Winter is coming!");
                 changeCoordinates(0,0,-7);
                 break;
         }
@@ -39,7 +40,7 @@ public class JetPlane extends Aircraft implements Flyable{
     public void registerTower(WeatherTower weatherTower) {
         this.weatherTower = weatherTower;
         weatherTower.register(this);
-        System.out.println("Tower says: JetPlane#" + this.name + "(" + this.id + ") registered to weather tower.");
+        WriteToFile.writeToFile("Tower says: JetPlane#" + this.name + "(" + this.id + ") registered to weather tower.");
     }
 
     @Override
@@ -55,8 +56,8 @@ public class JetPlane extends Aircraft implements Flyable{
 
         if (height <= 0) {
             this.weatherTower.unregister(this);
-            System.out.println("JetPlane#" + this.name + "(" + this.id + ") landing. Longitude = " + longitude + ", Latitude = " + latitude + ".");
-            System.out.println("Tower says: JetPlane#" + this.name + "(" + this.id + ") unregistered from weather tower.");
+            WriteToFile.writeToFile("JetPlane#" + this.name + "(" + this.id + ") landing. Longitude = " + longitude + ", Latitude = " + latitude + ".");
+            WriteToFile.writeToFile("Tower says: JetPlane#" + this.name + "(" + this.id + ") unregistered from weather tower.");
             height = 0;
         }
 

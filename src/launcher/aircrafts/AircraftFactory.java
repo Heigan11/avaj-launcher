@@ -4,6 +4,9 @@ import launcher.Coordinates;
 
 public class AircraftFactory {
     public static Flyable newAircraft(String type, String name, int longitude, int latitude, int height) {
+        if (height > 100)
+            height = 100;
+
         Coordinates coordinates = new Coordinates(longitude, latitude, height);
 
         switch (type) {

@@ -2,6 +2,7 @@ package launcher.aircrafts;
 
 import launcher.Coordinates;
 import launcher.WeatherTower;
+import launcher.WriteToFile;
 
 public class Helicopter extends Aircraft implements Flyable{
 
@@ -17,19 +18,19 @@ public class Helicopter extends Aircraft implements Flyable{
 
         switch (weather) {
             case "RAIN":
-                System.out.println("Helicopter#" + this.name + "(" + this.id +"): It's raining. Helicopter is wet.");
+                WriteToFile.writeToFile("Helicopter#" + this.name + "(" + this.id +"): It's raining. Helicopter is wet.");
                 changeCoordinates(5,0,0);
                 break;
             case "FOG":
-                System.out.println("Helicopter#" + this.name + "(" + this.id +"): It's fog. I don't see you.");
+                WriteToFile.writeToFile("Helicopter#" + this.name + "(" + this.id +"): It's fog. I don't see you.");
                 changeCoordinates(1,0,0);
                 break;
             case "SUN":
-                System.out.println("Helicopter#" + this.name + "(" + this.id +"): This is hot.");
+                WriteToFile.writeToFile("Helicopter#" + this.name + "(" + this.id +"): This is hot.");
                 changeCoordinates(10,0,2);
                 break;
             case "SNOW":
-                System.out.println("Helicopter#" + this.name + "(" + this.id +"): My rotor is going to freeze!");
+                WriteToFile.writeToFile("Helicopter#" + this.name + "(" + this.id +"): My rotor is going to freeze!");
                 changeCoordinates(0,0,-12);
                 break;
         }
@@ -39,7 +40,7 @@ public class Helicopter extends Aircraft implements Flyable{
     public void registerTower(WeatherTower weatherTower) {
         this.weatherTower = weatherTower;
         weatherTower.register(this);
-        System.out.println("Tower says: Helicopter#" + this.name + "(" + this.id + ") registered to weather tower.");
+        WriteToFile.writeToFile("Tower says: Helicopter#" + this.name + "(" + this.id + ") registered to weather tower.");
     }
 
     @Override
@@ -55,8 +56,8 @@ public class Helicopter extends Aircraft implements Flyable{
 
         if (height <= 0) {
             this.weatherTower.unregister(this);
-            System.out.println("Helicopter#" + this.name + "(" + this.id + ") landing. Longitude = " + longitude + ", Latitude = " + latitude + ".");
-            System.out.println("Tower says: Helicopter#" + this.name + "(" + this.id + ") unregistered from weather tower.");
+            WriteToFile.writeToFile("Helicopter#" + this.name + "(" + this.id + ") landing. Longitude = " + longitude + ", Latitude = " + latitude + ".");
+            WriteToFile.writeToFile("Tower says: Helicopter#" + this.name + "(" + this.id + ") unregistered from weather tower.");
             height = 0;
         }
 

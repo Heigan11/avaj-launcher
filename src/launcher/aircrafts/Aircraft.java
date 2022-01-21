@@ -19,4 +19,8 @@ public abstract class Aircraft {
     private long nextId(){
         return ++idCounter;
     }
+
+    public Coordinates getCoordinates() {
+        return this.coordinates;
+    }
 }
